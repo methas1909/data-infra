@@ -168,6 +168,18 @@ services:
       - server:127.0.0.1
     working_dir: /app
 
+  kafdrop:
+    image: obsidiandynamics/kafdrop:3.30.0
+    depends_on:
+      - kafka
+    ports:
+      - '9002:9000'
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+      JVM_OPTS: '-Xms32M -Xmx64M'
+    extra_hosts:
+      - server:127.0.0.1
+
 volumes:
   minio_data: null
   ch_data: null
