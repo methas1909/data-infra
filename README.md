@@ -1,3 +1,13 @@
+## โครงสร้าง docker-compose.dev.yml (Docker Compose Overview)
+
+**ภาษาไทย:**  
+ไฟล์ `docker-compose.dev.yml` จะรวบรวมบริการหลักที่ใช้ใน data platform นี้ เช่น Zookeeper, Kafka, MinIO, ClickHouse, Airflow, Spark, Flask API และ Python dev container โดยแต่ละ service จะถูกตั้งค่าพอร์ตและ environment variable ให้พร้อมใช้งานสำหรับการพัฒนาและทดสอบในเครื่องเดียว
+
+**English:**  
+The `docker-compose.dev.yml` file defines all core services for this data platform, including Zookeeper, Kafka, MinIO, ClickHouse, Airflow, Spark, Flask API, and a Python dev container. Each service is configured with ports and environment variables for easy local development and testing.
+
+---
+
 ## สิ่งที่ต้องเตรียม (Requirements & Setup)
 
 **ภาษาไทย:**  
