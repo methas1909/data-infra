@@ -1,20 +1,11 @@
-## โครงสร้าง docker-compose.dev.yml (Docker Compose Overview)
-
-**ภาษาไทย:**  
-ไฟล์ `docker-compose.dev.yml` จะรวบรวมบริการหลักที่ใช้ใน data platform นี้ เช่น Zookeeper, Kafka, MinIO, ClickHouse, Airflow, Spark, Flask API และ Python dev container โดยแต่ละ service จะถูกตั้งค่าพอร์ตและ environment variable ให้พร้อมใช้งานสำหรับการพัฒนาและทดสอบในเครื่องเดียว
+## docker-compose.dev.yml Structure (Docker Compose Overview)
 
 **English:**  
 The `docker-compose.dev.yml` file defines all core services for this data platform, including Zookeeper, Kafka, MinIO, ClickHouse, Airflow, Spark, Flask API, and a Python dev container. Each service is configured with ports and environment variables for easy local development and testing.
 
 ---
 
-## สิ่งที่ต้องเตรียม (Requirements & Setup)
-
-**ภาษาไทย:**  
-- ติดตั้ง [Docker Desktop](https://www.docker.com/products/docker-desktop)  
-- (แนะนำ) ติดตั้ง `make` (บน Windows ใช้ Git Bash หรือ Chocolatey)  
-- เตรียมไฟล์ `.env` สำหรับตั้งค่าระบบ  
-- ใช้คำสั่ง `make` เพื่อเตรียมและรันบริการต่าง ๆ
+## Requirements & Setup
 
 **English:**  
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop)  
@@ -24,54 +15,54 @@ The `docker-compose.dev.yml` file defines all core services for this data platfo
 
 ---
 
-## เริ่มต้นอย่างไร (Step-by-step)
+## Getting Started (Step-by-step)
 
-1. ติดตั้ง [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-2. ดาวน์โหลดหรือโคลนโปรเจกต์นี้
-3. เตรียมไฟล์ `.env` และคีย์ Airflow ด้วยคำสั่ง:
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
+2. Download or clone this project
+3. Prepare the `.env` file and Airflow keys using:
    ```bash
    make init
    ```
-4. เปิดบริการทั้งหมด:
+4. Start all services:
    ```bash
    make up
    ```
-5. เปิดเบราว์เซอร์ไปที่ [http://localhost:8080](http://localhost:8080) เพื่อเข้าใช้งาน Airflow
+5. Open your browser at [http://localhost:8080](http://localhost:8080) to access Airflow
 
-ตัวอย่างหน้าจอ:
-![ตัวอย่างหน้าจอ Airflow](docs/images/airflow-example.png)
+Example screen:
+![Airflow Example Screen](docs/images/airflow-example.png)
 
 ---
 
-## Make (optional แต่แนะนำ)
+## Make (optional but recommended)
 
 ### Windows
-- แนะนำให้ใช้ `make` ผ่าน Git Bash หรือ
-- ติดตั้ง `make` ด้วย Chocolatey:
+- It is recommended to use `make` via Git Bash or
+- Install `make` using Chocolatey:
 	```powershell
 	choco install make
 	```
 
-หลังติดตั้งแล้ว ให้ปิด/เปิดเทอร์มินัลใหม่ แล้วตรวจสอบว่าใช้งานได้ด้วย:
+After installation, restart your terminal and verify it works with:
 
 ```powershell
 make --version
 ```
 
-### วิธีใช้งานในโปรเจกต์นี้
-- ดูรายการคำสั่งที่มี:
+### Usage in this project
+- View available commands:
 
 	```powershell
 	make help
 	```
 
-- ตรวจสอบเวอร์ชันของ make:
+- Check the version of make:
 
 	```powershell
 	make check-make
 	```
 
-- ตรวจสอบเวอร์ชันของ Python (ถ้ามีติดตั้ง):
+- Check the version of Python (if installed):
 
 	```powershell
 	make check-python
@@ -81,26 +72,26 @@ make --version
 # data-infra
 
 ## Local Quickstart (Docker)
-- ติดตั้ง Docker Desktop และแนะนำให้รันคำสั่งผ่าน Git Bash (บน Windows)
-- เตรียมไฟล์ .env และคีย์ Airflow:
+- Install Docker Desktop and use Git Bash (on Windows) for commands
+- Prepare the `.env` file and Airflow keys:
   ```bash
   make init
   ```
-- เปิดบริการทั้งหมด:
+- Start all services:
   ```bash
   make up
   ```
-- ดู log:
+- View logs:
   ```bash
   make logs
   ```
-- ปิดและลบคอนเทนเนอร์/วอลุ่มชั่วคราว:
+- Stop and remove temporary containers/volumes:
   ```bash
   make down
   ```
 
 Endpoints:
 - Airflow: http://localhost:8080 (user: admin / pass: admin)
-- MinIO Console: http://localhost:9001 (user/pass จาก docker/.env)
+- MinIO Console: http://localhost:9001 (user/pass from docker/.env)
 - ClickHouse HTTP: http://localhost:8123
-- Kafka (ภายในเครือข่าย Docker): kafka:9092
+- Kafka (within Docker network): kafka:9092
