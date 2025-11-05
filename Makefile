@@ -1,4 +1,4 @@
-.PHONY: help check-make check-python init up down logs check-docker
+.PHONY: help check-make check-python init up down logs check-docker bootstrap
 
 help:
 	@echo "Available Make targets:"
@@ -10,6 +10,7 @@ help:
 	@echo "  up             - Start all services (docker compose up -d)"
 	@echo "  logs           - Tail compose logs"
 	@echo "  down           - Stop and remove containers/volumes"
+	@echo "  bootstrap      - Create buckets, topics, and tables automatically"
 
 check-make:
 	@make --version
@@ -31,3 +32,6 @@ logs:
 
 down:
 	@cd docker && docker compose -f docker-compose.dev.yml down -v
+
+bootstrap:
+	@bash ./scripts/bootstrap_resources.sh

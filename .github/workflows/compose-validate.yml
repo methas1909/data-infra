@@ -1,0 +1,37 @@
+name: Compose Validate & Yamllint
+
+on:
+  push:
+    paths:
+      - '**/*.yml'
+      - '**/*.yaml'
+      - '**/docker-compose*.yml'
+  pull_request:
+    paths:
+      - '**/*.yml'
+      - '**/*.yaml'
+      - '**/docker-compose*.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install yamllint
+        run: pip install yamllint
+
+      - name: Run yamllint
+        run: yamllint .
+
+      - name: Install Docker Compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
+
+      - name: Validate Docker Compose
+        run: docker-compose -f docker/docker-compose.dev.yml config
